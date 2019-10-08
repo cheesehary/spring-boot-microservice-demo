@@ -32,7 +32,7 @@ public class CustomerController {
 	}
 
 	@GetMapping("/{customerId}")
-	public CustomerWithDetail findCustomer(@Valid @PathVariable int customerId) {
+	public CustomerWithDetail findCustomer(@PathVariable int customerId) {
 		return customerService.findById(customerId);
 	}
 
@@ -42,7 +42,7 @@ public class CustomerController {
 	}
 
 	@PutMapping("")
-	public CustomerWithDetail updateCustomer(@RequestBody CustomerWithDetail customerWithDetail) {
+	public CustomerWithDetail updateCustomer(@Valid @RequestBody CustomerWithDetail customerWithDetail) {
 		return customerService.update(customerWithDetail);
 	}
 
