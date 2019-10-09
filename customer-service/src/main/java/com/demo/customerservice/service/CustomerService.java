@@ -6,7 +6,7 @@ import com.demo.customerservice.entity.Customer;
 import com.demo.customerservice.model.CustomerWithDetail;
 
 public interface CustomerService {
-	public List<Customer> findAll();
+	public List<Customer> findAll(int page, int size);
 
 	public CustomerWithDetail findById(int id);
 

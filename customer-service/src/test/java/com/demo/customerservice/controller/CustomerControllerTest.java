@@ -39,16 +39,31 @@ public class CustomerControllerTest {
 	private CustomerService customerServiceMock;
 
 	@Test
-	public void testFindAllCustomers() throws Exception {
+	public void testFindAllCustomers_defualt_paging() throws Exception {
 		Customer customer = new Customer();
 		customer.setId(1);
 		customer.setFirstName("first");
 		customer.setLastName("lastName");
 		List<Customer> customers = Arrays.asList(customer);
-		when(customerServiceMock.findAll()).thenReturn(customers);
+		when(customerServiceMock.findAll(0, 10)).thenReturn(customers);
 		ObjectMapper mapper = new ObjectMapper();
 		String jsonStr = mapper.writeValueAsString(new CustomerList(customers));
 		RequestBuilder request = MockMvcRequestBuilders.get("/apiv1/customers").accept(MediaType.APPLICATION_JSON);
+		mockMvc.perform(request).andExpect(status().isOk()).andExpect(content().json(jsonStr)).andReturn();
+	}
+
+	@Test
+	public void testFindAllCustomers_explicit_paging() throws Exception {
+		Customer customer = new Customer();
+		customer.setId(1);
+		customer.setFirstName("first");
+		customer.setLastName("lastName");
+		List<Customer> customers = Arrays.asList(customer);
+		when(customerServiceMock.findAll(1, 3)).thenReturn(customers);
+		ObjectMapper mapper = new ObjectMapper();
+		String jsonStr = mapper.writeValueAsString(new CustomerList(customers));
+		RequestBuilder request = MockMvcRequestBuilders.get("/apiv1/customers?page=1&size=3")
+				.accept(MediaType.APPLICATION_JSON);
 		mockMvc.perform(request).andExpect(status().isOk()).andExpect(content().json(jsonStr)).andReturn();
 	}
 

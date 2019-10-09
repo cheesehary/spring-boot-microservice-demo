@@ -23,6 +23,17 @@ paths:
       tags:
       - "customer"
       summary: "Find all customers"
+      parameters:
+      - in: query
+        name: page
+        type: integer
+        description: page number
+        default: 0
+      - in: query
+        name: size
+        type: integer
+        description: size of a page
+        default: 10
       responses:
         200:
           description: "successful operation"

@@ -5,7 +5,7 @@ import java.util.List;
 import com.demo.customerservice.entity.Customer;
 
 public interface CustomerDAO {
-	public List<Customer> findAll();
+	public List<Customer> findAll(int page, int size);
 	
 	public Customer findById(int id);
 	

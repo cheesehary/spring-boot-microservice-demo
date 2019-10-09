@@ -42,8 +42,8 @@ public class CustomerServiceTest {
 	@Test
 	public void testFindAll() {
 		List<Customer> customers = new ArrayList<>();
-		when(customerDAOMock.findAll()).thenReturn(customers);
-		assertEquals(customers, customerService.findAll());
+		when(customerDAOMock.findAll(3, 20)).thenReturn(customers);
+		assertEquals(customers, customerService.findAll(3, 20));
 	}
 
 	@Test

@@ -26,8 +26,8 @@ public class CustomerDAOTest {
 
 	@Test
 	public void testFindAll() {
-		List<Customer> customers = customerDAO.findAll();
-		assertEquals(3, customers.size());
+		List<Customer> customers = customerDAO.findAll(0, 2);
+		assertEquals(2, customers.size());
 	}
 
 	@Test

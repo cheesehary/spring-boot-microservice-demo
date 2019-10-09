@@ -17,9 +17,11 @@ public class CustomerDAOImpl implements CustomerDAO {
 	private EntityManager entityManager;
 	
 	@Override
-	public List<Customer> findAll() {
+	public List<Customer> findAll(int page, int size) {
 		Session session = entityManager.unwrap(Session.class);
 		Query<Customer> query = session.createQuery("from Customer", Customer.class);
+		query.setFirstResult(page * size);
+		query.setMaxResults(size);
 		List<Customer> customers = query.getResultList();
 		return customers;
 	}
