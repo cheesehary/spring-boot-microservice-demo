@@ -1,7 +1,5 @@
 package com.demo.customerservice.controller.v1;
 
-import java.util.Optional;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -21,9 +19,10 @@ public class CustomerExceptionHandler {
 
 	@ExceptionHandler
 	public ResponseEntity<ErrorResponse> handleException(MethodArgumentNotValidException exception) {
-		Optional<String> msg = exception.getBindingResult().getFieldErrors().stream()
-				.map(err -> err.getField() + ": " + err.getDefaultMessage()).reduce((acc, item) -> acc + ", " + item);
-		ErrorResponse error = new ErrorResponse(HttpStatus.BAD_REQUEST.value(), msg.get());
+		String msg = exception.getBindingResult().getFieldErrors().stream()
+				.map(err -> err.getField() + ": " + err.getDefaultMessage()).reduce((acc, item) -> acc + ", " + item)
+				.orElse("bad request");
+		ErrorResponse error = new ErrorResponse(HttpStatus.BAD_REQUEST.value(), msg);
 		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
 	}
 

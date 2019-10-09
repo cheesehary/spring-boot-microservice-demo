@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="customer")
@@ -23,6 +25,7 @@ public class Customer {
 	@Column(name="last_name")
 	private String lastName;
 	
+	@Temporal(value = TemporalType.DATE)
 	@Column(name="dob")
 	private Date dob;
 	
