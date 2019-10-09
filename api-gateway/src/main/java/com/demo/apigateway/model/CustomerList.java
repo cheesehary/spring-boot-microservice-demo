@@ -8,6 +8,10 @@ public class CustomerList {
 	public CustomerList() {
 	}
 
+	public CustomerList(List<Customer> customers) {
+		this.customers = customers;
+	}
+
 	public List<Customer> getCustomers() {
 		return customers;
 	}
