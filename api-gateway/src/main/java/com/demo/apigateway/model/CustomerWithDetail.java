@@ -15,6 +15,8 @@ public class CustomerWithDetail {
 
 	private String homeAddress;
 
+	private String emailAddress;
+
 	public CustomerWithDetail() {
 	}
 
@@ -64,6 +66,14 @@ public class CustomerWithDetail {
 
 	public void setHomeAddress(String homeAddress) {
 		this.homeAddress = homeAddress;
+	}
+
+	public String getEmailAddress() {
+		return emailAddress;
+	}
+
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
 	}
 
 }

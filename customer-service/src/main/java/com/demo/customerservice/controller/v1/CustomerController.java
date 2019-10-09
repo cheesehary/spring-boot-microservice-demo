@@ -39,8 +39,6 @@ public class CustomerController {
 			@RequestParam("size") Optional<Integer> sizeParam) {
 		int page = pageParam.isPresent() ? pageParam.get() : DEFAULT_PAGE;
 		int size = sizeParam.isPresent() ? sizeParam.get() : DEFAULT_SIZE;
-		System.out.println("page: " + page);
-		System.out.println("size: " + size);
 		List<Customer> list = customerService.findAll(page, size);
 		return new CustomerList(list);
 	}
@@ -57,6 +55,7 @@ public class CustomerController {
 
 	@PutMapping("")
 	public CustomerWithDetail updateCustomer(@Valid @RequestBody CustomerWithDetail customerWithDetail) {
+		System.out.println(customerWithDetail.getEmailAddress());
 		return customerService.update(customerWithDetail);
 	}
 

@@ -3,6 +3,7 @@ package com.demo.customerservice.model;
 import java.util.Date;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 public class CustomerWithDetail {
@@ -21,6 +22,9 @@ public class CustomerWithDetail {
 	private String reserve;
 
 	private String homeAddress;
+
+	@Pattern(regexp = "[a-zA-Z0-9_.]+@[a-zA-Z0-9]+[.]{1}[a-zA-Z]{2,4}", message = "invalid email address")
+	private String emailAddress;
 
 	public CustomerWithDetail() {
 	}
@@ -71,5 +75,13 @@ public class CustomerWithDetail {
 
 	public void setHomeAddress(String homeAddress) {
 		this.homeAddress = homeAddress;
+	}
+
+	public String getEmailAddress() {
+		return emailAddress;
+	}
+
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
 	}
 }

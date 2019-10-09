@@ -69,6 +69,8 @@ paths:
               type: "string"
             homeAddress:
               type: "string"
+            emailAddress:
+              type: "string"
       responses:
         200:
           description: "successful operation"
@@ -111,6 +113,8 @@ paths:
             reserve:
               type: "string"
             homeAddress:
+              type: "string"
+            emailAddress:
               type: "string"
       responses:
         200:
@@ -203,6 +207,8 @@ definitions:
         description: "reserved field"
       homeAddress:
         type: "string"
+      emailAddress:
+        type: "string"
   CustomerExt:
     type: "object"
     properties:
@@ -216,6 +222,7 @@ definitions:
         type: "string"
         enum:
         - homeAddress
+        - emailAddress
       value:
         type: "string"
   CustomerList:

@@ -69,6 +69,8 @@ paths:
               type: "string"
             homeAddress:
               type: "string"
+            emailAddress:
+              type: "string"
       responses:
         200:
           description: "successful operation"
@@ -111,6 +113,8 @@ paths:
             reserve:
               type: "string"
             homeAddress:
+              type: "string"
+            emailAddress:
               type: "string"
       responses:
         200:
@@ -202,6 +206,8 @@ definitions:
         type: "string"
         description: "reserved field"
       homeAddress:
+        type: "string"
+      emailAddress:
         type: "string"
   CustomerList:
     type: "object"

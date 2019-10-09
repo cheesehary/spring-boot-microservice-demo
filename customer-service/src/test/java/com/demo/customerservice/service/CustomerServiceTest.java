@@ -69,6 +69,7 @@ public class CustomerServiceTest {
 	public void testFindById_failure() {
 		when(customerDAOMock.findById(1)).thenReturn(null);
 		customerService.findById(1);
+		verify(customerDAOMock).findById(1);
 	}
 
 	@Test

@@ -34,17 +34,20 @@ public class CustomerExtDAOTest {
 
 	@Test
 	public void testSave() {
-		CustomerExt customerExt2 = new CustomerExt(2, CustomerExtProp.homeAddress, "brown street");
-		assertThat(customerExtDAO.save(customerExt2), samePropertyValuesAs(customerExt2));
+		CustomerExt customerExtWithHomeAddress = new CustomerExt(2, CustomerExtProp.homeAddress, "brown street");
+		CustomerExt customerExtWithEmailAddress = new CustomerExt(2, CustomerExtProp.emailAddress, "some@email.com");
+		assertThat(customerExtDAO.save(customerExtWithHomeAddress), samePropertyValuesAs(customerExtWithHomeAddress));
+		assertThat(customerExtDAO.save(customerExtWithEmailAddress), samePropertyValuesAs(customerExtWithEmailAddress));
 	}
 
 	@Test
 	public void testSaveMany() {
 		List<CustomerExt> exts = Arrays.asList(new CustomerExt(2, CustomerExtProp.homeAddress, "brown street"),
+				new CustomerExt(2, CustomerExtProp.emailAddress, "some@email.com"),
 				new CustomerExt(3, CustomerExtProp.homeAddress, "network street"));
 		List<CustomerExt> savedExts = customerExtDAO.saveMany(exts);
-		assertEquals(2, savedExts.size());
-		assertEquals(1, customerExtDAO.findByCustomerId(2).size());
+		assertEquals(3, savedExts.size());
+		assertEquals(2, customerExtDAO.findByCustomerId(2).size());
 		assertEquals(1, customerExtDAO.findByCustomerId(3).size());
 	}
 

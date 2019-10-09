@@ -89,10 +89,15 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	private List<CustomerExt> extractExts(Customer customer, CustomerWithDetail customerWithDetail) {
+		System.out.println(this.extProps);
+		System.out.println(customerWithDetail.getEmailAddress());
+		System.out.println(customerWithDetail.getHomeAddress());
 		List<CustomerExt> customerExts = this.extProps.stream().map(prop -> {
 			switch (prop) {
 			case CustomerExtProp.homeAddress:
 				return new CustomerExt(customer.getId(), prop, customerWithDetail.getHomeAddress());
+			case CustomerExtProp.emailAddress:
+				return new CustomerExt(customer.getId(), prop, customerWithDetail.getEmailAddress());
 			default:
 				return null;
 			}
@@ -111,6 +116,9 @@ public class CustomerServiceImpl implements CustomerService {
 			switch (ext.getProp()) {
 			case CustomerExtProp.homeAddress:
 				customerWithDetail.setHomeAddress(ext.getValue());
+				break;
+			case CustomerExtProp.emailAddress:
+				customerWithDetail.setEmailAddress(ext.getValue());
 				break;
 			}
 		});

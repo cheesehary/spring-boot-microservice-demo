@@ -7,8 +7,10 @@ public class CustomerExtProp {
 
 	public static final String homeAddress = "homeAddress";
 
+	public static final String emailAddress = "emailAddress";
+
 	public static final List<String> getExtProps() {
-		return Arrays.asList(homeAddress);
+		return Arrays.asList(homeAddress, emailAddress);
 	}
 
 }
