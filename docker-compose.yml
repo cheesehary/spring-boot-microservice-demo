@@ -1,0 +1,44 @@
+version: "3"
+services:
+  customer-service:
+    build: ./customer-service
+    volumes:
+      - ./:/app
+    ports:
+      - "8081:8081"
+    depends_on:
+      - db
+      - eureka
+    networks:
+      - demo
+  eureka:
+    build: ./discovery-server
+    ports:
+      - "8761:8761"
+    networks:
+      - demo
+  gateway:
+    build: ./api-gateway
+    ports:
+      - "8080:8080"
+    depends_on:
+      - eureka
+    networks:
+      - demo
+  db:
+    image: mysql:5.7
+    volumes:
+      - db-date:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_USER=username
+      - MYSQL_PASSWORD=password
+      - MYSQL_RANDOM_ROOT_PASSWORD=true
+      - MYSQL_DATABASE=demo
+    networks:
+      - demo
+networks:
+  demo:
+volumes:
+  db-date:

@@ -37,7 +37,6 @@ public class CustomerController {
 		String url = (pageParam.isPresent() && sizeParam.isPresent())
 				? "/apiv1/customers?page=" + pageParam.get() + "&size=" + sizeParam.get()
 				: "/apiv1/customers";
-		System.out.println(url);
 		return webClientBuilder.build().get().uri(url).exchange()
 				.flatMap(response -> this.handleResponse(response, CustomerList.class)).block();
 	}

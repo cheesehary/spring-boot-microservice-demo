@@ -89,9 +89,6 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	private List<CustomerExt> extractExts(Customer customer, CustomerWithDetail customerWithDetail) {
-		System.out.println(this.extProps);
-		System.out.println(customerWithDetail.getEmailAddress());
-		System.out.println(customerWithDetail.getHomeAddress());
 		List<CustomerExt> customerExts = this.extProps.stream().map(prop -> {
 			switch (prop) {
 			case CustomerExtProp.homeAddress:
